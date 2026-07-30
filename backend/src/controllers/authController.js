@@ -1,4 +1,21 @@
-import {loginUser} from "../services/authService.js";
+import {loginUser, registerUser} from "../services/authService.js";
+
+const register = async (request, response) =>{
+    try {
+        const {name, password} = request.body;
+        const result = await registerUser(name, password);
+        response.json(result);
+
+
+    } catch (error) {
+
+        response.status(500).json({
+            message: error.message
+        });
+    }
+}
+
+
 
 const login = async (request, response) => {
 
@@ -25,7 +42,10 @@ const login = async (request, response) => {
 
     } catch(error) {
         console.log(error);
+        response.status(500).json({
+            message: error.message
+        });
     }
 }
 
-export { login };
+export { login , register };

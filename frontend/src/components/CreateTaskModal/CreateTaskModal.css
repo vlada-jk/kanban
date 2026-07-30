@@ -1,0 +1,187 @@
+.task-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0,0,0,0.45);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    backdrop-filter: blur(5px);
+
+    z-index: 1000;
+}
+
+
+
+.task-modal {
+
+    width: 380px;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 16px;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+
+    animation: taskModalShow .2s ease-out;
+}
+
+
+
+.task-modal h2 {
+
+    margin: 0 0 25px;
+
+    text-align: center;
+
+    font-size: 24px;
+
+    color: #222;
+}
+
+
+
+.task-modal form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+
+
+.task-modal input,
+.task-modal textarea{
+
+    width: 100%;
+
+    height: 45px;
+
+    box-sizing: border-box;
+
+
+    padding: 12px 15px;
+
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+
+    font-size: 16px;
+
+    outline: none;
+
+
+    transition: .2s;
+}
+.task-modal textarea{
+    min-height: 120px;
+
+    resize: vertical;
+
+    line-height: 1.5;
+}
+
+
+.task-modal input:focus {
+
+    border-color: #4f46e5;
+
+    box-shadow:
+            0 0 0 3px rgba(79,70,229,.15);
+}
+
+
+
+/* buttons */
+
+.task-modal-buttons {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+
+}
+
+
+
+.task-modal-buttons button {
+
+    padding: 10px 20px;
+
+    border-radius: 10px;
+
+    border: none;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition: .2s;
+}
+
+
+
+.task-btn-cancel {
+
+    background: #e5e7eb;
+
+    color: #333;
+}
+
+
+
+.task-btn-cancel:hover {
+
+    background: #d1d5db;
+}
+
+
+
+.task-btn-create {
+
+    background: #4f46e5;
+
+    color: white;
+}
+
+
+
+.task-btn-create:hover {
+
+    background: #4338ca;
+}
+
+
+
+@keyframes taskModalShow {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(-15px) scale(.95);
+
+    }
+
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0) scale(1);
+
+    }
+}

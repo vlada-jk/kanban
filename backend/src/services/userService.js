@@ -48,4 +48,26 @@ const getUsers = async () => {
 
 };
 
-export { createUser, getUsers };
+const getUserById = async (id) => {
+    const user = await usersDB.get(id);
+
+    return {
+        id: user._id,
+        name: user.name
+    };
+};
+
+// for registration (do we have a user with this name)
+
+const getUserByName = async (name) => {
+
+    const result = await usersDB.list({
+        include_docs: true
+    });
+
+    const users = result.rows.map(row => row.doc);
+
+    return users.find(user => user.name === name) || null;
+};
+
+export { createUser, getUsers, getUserById, getUserByName };

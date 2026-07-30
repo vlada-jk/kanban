@@ -6,6 +6,7 @@ import cors from 'cors';
 import userRoutes from './routes/userRoutes.js';
 import authRoutes from "./routes/authRoutes.js";
 import projectRoutes from "./routes/projectRoutes.js";
+import taskRoutes from "./routes/taskRoutes.js";
 
 const server = express();
 const port = 3000;
@@ -16,6 +17,7 @@ server.use(express.json());
 // user
 server.use('/api/users', userRoutes);
 
+
 // auth
 server.use('/api/auth', authRoutes);
 
@@ -23,6 +25,8 @@ server.use('/api/auth', authRoutes);
 
 server.use('/api/projects', projectRoutes);
 
+// tasks
+server.use('/api/tasks', taskRoutes);
 
 // server.get('/api/tasks', (req, res) => {
 //     res.json([

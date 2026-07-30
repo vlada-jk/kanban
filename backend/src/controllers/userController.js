@@ -1,4 +1,4 @@
-import {createUser, getUsers} from "../services/userService.js";
+import {createUser, getUserById, getUsers} from "../services/userService.js";
 
 const addUser = async (request, response) => {
     try {
@@ -24,4 +24,18 @@ const findUsers = async (request, response) => {
 
 }
 
-export {addUser, findUsers}
+
+const findUserById = async (request, response) => {
+    try {
+        const user = await getUserById(request.params.id);
+
+        response.json(user);
+
+    } catch (error) {
+        response.status(500).json({
+            error: error.message
+        });
+    }
+};
+
+export {addUser, findUsers, findUserById}

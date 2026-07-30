@@ -1,5 +1,33 @@
 import {usersDB} from "../config/couchdb.js";
 
+import {getUserByName} from "./userService.js";
+
+const registerUser = async (name, password) => {
+    try{
+        const existingUser = await getUserByName(name);
+
+        if (existingUser) {
+            throw new Error("User already exists");
+        }
+
+        const newUser = {
+            name,
+            password,
+        };
+
+        const result = await usersDB.insert(newUser);
+
+        return result;
+
+    } catch (error) {
+        console.log(error);
+        throw error;
+
+    }
+}
+
+
+
 // find and return a user
 
 const loginUser = async (name, password) => {
@@ -27,4 +55,4 @@ const loginUser = async (name, password) => {
 }
 
 
-export {loginUser};
+export {loginUser, registerUser};

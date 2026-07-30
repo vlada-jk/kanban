@@ -43,16 +43,23 @@
     animation: modalShow 0.2s ease-out;
 }
 
-
+.modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
 .modal h2 {
     margin: 0 0 20px;
 
     font-size: 24px;
     color: #222;
+    text-align: center;
+
 }
 
 
-.modal input {
+.modal input,
+.modal textarea{
     width: 100%;
     box-sizing: border-box;
 
@@ -68,8 +75,18 @@
     transition: 0.2s;
 }
 
+.modal textarea {
+    min-height: 120px;
 
-.modal input:focus {
+    resize: vertical;
+
+    line-height: 1.5;
+}
+
+
+
+.modal input:focus,
+.modal textarea:focus {
     border-color: #4f46e5;
     box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
 }

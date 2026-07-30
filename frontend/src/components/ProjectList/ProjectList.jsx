@@ -1,26 +1,42 @@
 import './ProjectList.css';
 import {useEffect, useState} from 'react';
-
+import {useStore} from "../../store/index.js";
 import {getProjects} from "../../services/api.js";
-
+import ProjectCard from "../ProjectCard/ProjectCard.jsx";
 
 const ProjectList = () => {
 
-    const [projects, setProjects] = useState([]);
+    // const {projects, updateCatalog} = useStore();
+    // useEffect(() => {
+    //     updateCatalog();
+    // }, []);
 
-    // const listProjects = getProjects();
+
+    const projects = useStore((state) => state.projects);
+    const updateCatalog = useStore(state => state.updateCatalog)
     useEffect(() => {
-        getProjects().then((data) => {
-            setProjects(data);
-        });
+        updateCatalog();
     }, [])
 
+
     return (
-        <>
+        <div className={"project-list"}
+        >
             {projects.map(project => (
-                <p key={project._id}>{project.title}</p>
+                <div
+                    key={project._id}
+                    className={"project-item"}>
+                    <ProjectCard
+                        // key={project._id}
+                        project={project}
+                    />
+                    {/*<p key={project._id}>{project.title}</p>*/}
+                </div>
+
             ))}
-        </>
+
+
+        </div>
     );
 }
 

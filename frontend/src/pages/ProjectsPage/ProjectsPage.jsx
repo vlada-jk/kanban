@@ -2,12 +2,10 @@ import './ProjectsPage.css'
 import ProjectList from "../../components/ProjectList/ProjectList.jsx";
 import CreateProjectModal from "../../components/CreateProjectModal/CreateProjectModal.jsx";
 import {useState} from "react";
-import {useStore} from "../../store/index.js";
 
 const ProjectsPage = () =>{
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-const nam = useStore((state) => state.x);
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -17,23 +15,49 @@ const nam = useStore((state) => state.x);
         setIsModalOpen(false);
     };
     return (
-        <>
-            <div className={"container"}>
-                {nam}
+        <div className="projects-page">
+
+            <div className="projects-header">
                 <h1>Projects</h1>
-                <button onClick={openModal}>Create new project</button>
-                <ProjectList/>
 
-                {isModalOpen && (
-                    <CreateProjectModal onClose={closeModal} />
-                )}
-                {/*hidden*/}
-                {/*<CreateProjectModal/>*/}
-
-
+                <button
+                    className="create-project-btn"
+                    onClick={openModal}
+                >
+                    Create new project
+                </button>
             </div>
-        </>
-    )
+
+
+            <div className="projects-content">
+                <ProjectList />
+            </div>
+
+
+            {isModalOpen && (
+                <CreateProjectModal onClose={closeModal} />
+            )}
+
+        </div>
+    );
+
+    // return (
+    //     <>
+    //         <div className={"container"}>
+    //             <h1>Projects</h1>
+    //             <button onClick={openModal}>Create new project</button>
+    //             <ProjectList/>
+    //
+    //             {isModalOpen && (
+    //                 <CreateProjectModal onClose={closeModal} />
+    //             )}
+    //             {/*hidden*/}
+    //             {/*<CreateProjectModal/>*/}
+    //
+    //
+    //         </div>
+    //     </>
+    // )
 }
 
 export default ProjectsPage;

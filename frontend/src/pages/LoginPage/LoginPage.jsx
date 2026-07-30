@@ -1,8 +1,11 @@
 import "./LoginPage.css";
 import {useState} from "react";
+import { Link } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+
 
 const LoginPage = ({onLogin}) => {
-
+    const navigate = useNavigate();
         const [name, setName] = useState("");
         const [password, setPassword] = useState("");
     const login = (event) => {
@@ -38,6 +41,8 @@ const LoginPage = ({onLogin}) => {
                 );
 
                 onLogin(data);
+                navigate("/projects");
+
 
                 console.log(data);
             })
@@ -46,51 +51,6 @@ const LoginPage = ({onLogin}) => {
                 alert(error.message);
             });
     };
-        // const login = (event) => {
-        //     event.preventDefault();
-        //     if (!(name && password)) return false;
-        //
-        //     fetch('http://localhost:3000/api/auth/login', {
-        //         method: 'POST',
-        //
-        //         headers: {
-        //             'Content-Type': 'application/json'
-        //         },
-        //
-        //         body: JSON.stringify({
-        //             name,
-        //             password
-        //         })
-        //     })
-        //         .then(response => {
-        //             if (!response.ok) {
-        //                 throw new Error(response.message);
-        //             }
-        //
-        //             return response.json()
-        //         })
-        //         // .then(response => {
-        //         //     // Damit im Local Storage unter "user" keine "message" gespeichert wird
-        //         //
-        //         //
-        //         //     return response;
-        //         // })
-        //
-        //         .then(data => {
-        //             localStorage.setItem(
-        //                 "user",
-        //                 JSON.stringify(data)
-        //             );
-        //             onLogin(data);
-        //
-        //             console.log(data)
-        //         })
-        //         .catch(error => {
-        //             console.log(error.message);
-        //             alert(error.message);
-        //         });
-        //
-        // }
 
         return (
             <>
@@ -110,6 +70,10 @@ const LoginPage = ({onLogin}) => {
                             name={"password"}
                             placeholder={"Password"}/>
                         <button type={"submit"}>Login</button>
+
+                        <p>
+                            No account? <Link to="/register">Register</Link>
+                        </p>
 
                     </form>
                 </div>

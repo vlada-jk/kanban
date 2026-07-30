@@ -1,0 +1,103 @@
+.project-card {
+    display: flex;
+
+    flex-direction: column;
+
+    width: 100%;
+
+    min-height: 220px;
+
+    background: #ffffff;
+
+    border-radius: 16px;
+
+    padding: 20px;
+
+    box-sizing: border-box;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+
+.project-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+}
+
+
+/* Заголовок */
+.project-card-header h3 {
+    margin: 0;
+
+    font-size: 22px;
+
+    color: #222;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+
+/* Описание */
+.project-card-body {
+    flex: 1;
+
+    margin-top: 15px;
+}
+
+
+.project-card-body p {
+    margin: 0;
+
+    color: #666;
+
+    line-height: 1.5;
+
+    display: -webkit-box;
+
+    -webkit-line-clamp: 4;
+
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+}
+
+
+/* Нижняя часть */
+.project-card-footer {
+    display: flex;
+
+    justify-content: flex-end;
+
+    margin-top: 20px;
+}
+
+
+.project-open-btn {
+    padding: 10px 22px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #4f46e5;
+
+    color: white;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+
+.project-open-btn:hover {
+    background: #4338ca;
+}
