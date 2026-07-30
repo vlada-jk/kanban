@@ -28,7 +28,6 @@ const login = async (request, response) => {
         const user = await loginUser(name, password);
 
         if (!user) {
-            // console.log('Name or password is wrong!', name, password);
             return response.status(401).json({
                 message: "Name or password is wrong!"
             });

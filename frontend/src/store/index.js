@@ -69,7 +69,9 @@ export const useStore = create((set) => {
             }
 
             await useStore.getState().updateCatalog();
-        }
+        },
+
+
         //
         //     await fetch(`${api_backend}/api/projects/${id}`, {
         //         method: "DELETE",

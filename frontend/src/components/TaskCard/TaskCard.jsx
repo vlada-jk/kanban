@@ -2,10 +2,13 @@ import './TaskCard.css';
 import {getUserById, updateTaskStatus} from "../../services/api.js";
 import {useStore} from "../../store/index.js";
 import {useEffect, useState} from "react";
+import EditTaskModal from "../EditTaskModal/EditTaskModal.jsx";
 
 
 const TaskCard = ({task, projectId}) => {
+    const [isEditOpen, setIsEditOpen] = useState(false);
 
+    
     const updateTasks = useStore(state => state.updateTasks);
     const deleteTask = useStore(state => state.deleteTask);
 
@@ -19,6 +22,11 @@ const TaskCard = ({task, projectId}) => {
 
 
     const handleDelete = async () => {
+        const confirmed = window.confirm(
+            "Are you sure you want to delete this task?"
+        );
+
+        if (!confirmed) return;
         await deleteTask(task._id, projectId);
     };
     const [creator, setCreator] = useState(null);
@@ -29,6 +37,8 @@ const TaskCard = ({task, projectId}) => {
     }, [task.createdBy]);
 
     return (
+        <>
+
         <div className="task-card">
 
             <div className="task-info">
@@ -49,7 +59,9 @@ const TaskCard = ({task, projectId}) => {
             <div className="task-actions">
 
                 <select
-                    className="task-status"
+                    // className="task-status"
+                    className={`task-status ${task.status.toLowerCase()}`}
+
                     value={task.status}
                     onChange={changeStatus}
                 >
@@ -58,7 +70,12 @@ const TaskCard = ({task, projectId}) => {
                     <option value="Done">Done</option>
                 </select>
 
+                <button
+                    className={"task-btn-edit"}
+                    onClick={() => setIsEditOpen(true)}>
 
+                    Edit
+                </button>
                 <button
                     className="task-delete-btn"
                     onClick={handleDelete}
@@ -68,6 +85,15 @@ const TaskCard = ({task, projectId}) => {
             </div>
 
         </div>
+            {isEditOpen && (
+                <EditTaskModal
+                    task={task}
+                    projectId={projectId}
+
+                    onClose={() => setIsEditOpen(false)}
+                />
+            )}
+        </>
     );
 };
 

@@ -1,7 +1,6 @@
 import './ProjectList.css';
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import {useStore} from "../../store/index.js";
-import {getProjects} from "../../services/api.js";
 import ProjectCard from "../ProjectCard/ProjectCard.jsx";
 
 const ProjectList = () => {

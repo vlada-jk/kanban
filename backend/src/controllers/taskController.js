@@ -1,4 +1,4 @@
-import {createTask, getTasks, changeTaskStatus, removeTask} from "../services/taskService.js";
+import {createTask, getTasks, changeTaskStatus, removeTask, updateTaskService} from "../services/taskService.js";
 
 const addTask = async (request, response) => {
     try {
@@ -55,4 +55,24 @@ const deleteTask = async (request, response) => {
     }
 };
 
-export { addTask, findTasks,  updateTaskStatus, deleteTask};
+const updateTask = async (req, res) => {
+    try {
+        const {id} = req.params;
+        const {title, description} = req.body;
+
+        const task = await updateTaskService(
+            id,
+            title,
+            description
+        );
+
+        res.json(task);
+
+    } catch(error) {
+        res.status(500).json({
+            message: error.message
+        });
+    }
+};
+
+export { addTask, findTasks,  updateTaskStatus, deleteTask, updateTask};

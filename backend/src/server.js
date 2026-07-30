@@ -28,24 +28,6 @@ server.use('/api/projects', projectRoutes);
 // tasks
 server.use('/api/tasks', taskRoutes);
 
-// server.get('/api/tasks', (req, res) => {
-//     res.json([
-//         {
-//             id: 1,
-//             title: 'first',
-//             status: 'todo'
-//         }
-//     ])
-// })
-
-// server.use(express.static('public', {
-//     extensions: ['html']
-// }));
-
-// server.get("/", (req, res) => {
-//     res.send("Hello World!");
-// })
-
 const init = () =>{
     server.listen(port, (err) => {
         if (err) console.warn;

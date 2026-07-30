@@ -1,7 +1,7 @@
 import './ProjectPage.css'
 import {useParams, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {getProjectById, getTasks, updateTaskStatus} from "../../services/api.js";
+import {getProjectById} from "../../services/api.js";
 
 import CreateTaskModal from "../../components/CreateTaskModal/CreateTaskModal";
 import TaskCard from "../../components/TaskCard/TaskCard.jsx";
@@ -53,6 +53,12 @@ const ProjectPage = () => {
     const deleteProject = useStore(state => state.deleteProject);
 
     const handleDeleteProject = async () => {
+        const confirmed = window.confirm(
+            "Are you sure you want to delete this project?"
+        );
+
+        if (!confirmed) return;
+
         await deleteProject(id);
         exit();
     };
@@ -93,11 +99,7 @@ const ProjectPage = () => {
                         </button>
 
                     </div>
-                    {/*<button className="back-btn"*/}
-                    {/*        type="button"*/}
-                    {/*        onClick={exit}>*/}
-                    {/*    ← All Projects*/}
-                    {/*</button>*/}
+
                 </div>
 
 
@@ -105,16 +107,21 @@ const ProjectPage = () => {
                     <h2>Tasks</h2>
 
                     <div className="tasks-list">
-
-                        {tasks?.map(task => (
+                        {tasks.length === 0 ? (
+                            <p className="no-tasks">
+                                No tasks yet
+                            </p>
+                        ) : (
+                            tasks.map(task => (
                                 <TaskCard
                                     key={task._id}
                                     task={task}
                                     projectId={id}
+
                                 />
+                            ))
+                        )}
 
-
-                        ))}
 
                     </div>
 

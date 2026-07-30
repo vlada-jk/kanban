@@ -1,40 +1,25 @@
 import "./LoginPage.css";
 import {useState} from "react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import {useNavigate} from "react-router-dom";
+import {loginUser} from "../../services/api.js";
 
 
 const LoginPage = ({onLogin}) => {
-    const navigate = useNavigate();
+        const navigate = useNavigate();
         const [name, setName] = useState("");
         const [password, setPassword] = useState("");
-    const login = (event) => {
-        event.preventDefault();
+        const login = async (event) => {
+            event.preventDefault();
 
-        if (!(name && password)) return;
+            if (!name || !password) return;
 
-        fetch('http://localhost:3000/api/auth/login', {
-            method: 'POST',
-
-            headers: {
-                'Content-Type': 'application/json'
-            },
-
-            body: JSON.stringify({
-                name,
-                password
-            })
-        })
-            .then(response => {
-                return response.json().then(data => {
-                    if (!response.ok) {
-                        throw new Error(data.message);
-                    }
-
-                    return data;
+            try {
+                const data = await loginUser({
+                    name,
+                    password
                 });
-            })
-            .then(data => {
+
                 localStorage.setItem(
                     "user",
                     JSON.stringify(data)
@@ -43,14 +28,12 @@ const LoginPage = ({onLogin}) => {
                 onLogin(data);
                 navigate("/projects");
 
-
-                console.log(data);
-            })
-            .catch(error => {
-                console.log(error.message);
+            } catch (error) {
                 alert(error.message);
-            });
-    };
+            }
+        };
+
+
 
         return (
             <>

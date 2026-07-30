@@ -16,6 +16,11 @@ const CreateProjectModal = ({onClose}) => {
 
         const user = JSON.parse(localStorage.getItem("user"));
 
+        if (!title.trim()) {
+            alert("Project name is required");
+            return;
+        }
+
         await createProject({
             title,
             createdBy: user.id,

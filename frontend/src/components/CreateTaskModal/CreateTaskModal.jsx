@@ -17,6 +17,10 @@ const CreateTaskModal = ({onClose, projectId}) => {
         event.preventDefault();
 
         const user = JSON.parse(localStorage.getItem("user"));
+        if (!title.trim()) {
+            alert("Task name is required");
+            return;
+        }
 
         await createTask(
             {

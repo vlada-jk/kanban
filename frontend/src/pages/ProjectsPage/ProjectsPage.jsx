@@ -41,23 +41,7 @@ const ProjectsPage = () =>{
         </div>
     );
 
-    // return (
-    //     <>
-    //         <div className={"container"}>
-    //             <h1>Projects</h1>
-    //             <button onClick={openModal}>Create new project</button>
-    //             <ProjectList/>
-    //
-    //             {isModalOpen && (
-    //                 <CreateProjectModal onClose={closeModal} />
-    //             )}
-    //             {/*hidden*/}
-    //             {/*<CreateProjectModal/>*/}
-    //
-    //
-    //         </div>
-    //     </>
-    // )
+
 }
 
 export default ProjectsPage;

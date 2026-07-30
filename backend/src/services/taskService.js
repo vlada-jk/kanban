@@ -49,4 +49,16 @@ const removeTask = async (id) => {
     return result;
 };
 
-export {createTask, getTasks, changeTaskStatus, removeTask};
+const updateTaskService = async (id, title, description) => {
+
+    const task = await tasksDB.get(id);
+
+    task.title = title;
+    task.description = description;
+
+    await tasksDB.insert(task);
+
+    return task;
+};
+
+export {createTask, getTasks, changeTaskStatus, removeTask, updateTaskService};

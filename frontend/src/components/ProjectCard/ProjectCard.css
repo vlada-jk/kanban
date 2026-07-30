@@ -28,7 +28,6 @@
 }
 
 
-/* Заголовок */
 .project-card-header h3 {
     margin: 0;
 
@@ -44,7 +43,6 @@
 }
 
 
-/* Описание */
 .project-card-body {
     flex: 1;
 
@@ -69,7 +67,6 @@
 }
 
 
-/* Нижняя часть */
 .project-card-footer {
     display: flex;
 
@@ -100,4 +97,13 @@
 
 .project-open-btn:hover {
     background: #4338ca;
+}
+
+.no-tasks {
+    text-align: center;
+    color: #777;
+    padding: 20px;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 20px;
 }

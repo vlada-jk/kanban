@@ -1,4 +1,26 @@
 const api_backend = "http://localhost:3000";
+//login
+
+const loginUser = async (user) => {
+    const response = await fetch(
+        `${api_backend}/api/auth/login`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(user),
+        }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(data.message);
+    }
+
+    return data;
+};
 
 // Registration
 
@@ -110,5 +132,25 @@ const getUserById = async (id) => {
     return response.json();
 };
 
-export {registration, getProjects, getProjectById, createProject, getTasks, createTask, updateTaskStatus, getUserById};
+
+const updateTask = async (id, data) => {
+
+    const response = await fetch(
+        `${api_backend}/api/tasks/${id}`,
+        {
+            method: "PUT",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify(data)
+        }
+    );
+
+    return response.json();
+};
+
+
+export {loginUser, registration, getProjects, getProjectById,
+    createProject, getTasks, createTask, updateTaskStatus,
+    getUserById, updateTask};
 
